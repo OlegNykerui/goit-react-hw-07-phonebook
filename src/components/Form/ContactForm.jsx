@@ -7,6 +7,7 @@ import { Button, Form, Field, ErrorMessage } from './Form.styled';
 
 export const ContactForm = () => {
   const { data } = useGetContactsQuery();
+
   const [submitForm, { isLoading }] = usePostContactsMutation();
 
   const initialValues = {
@@ -23,6 +24,7 @@ export const ContactForm = () => {
     const sameName = data.some(
       i => i.name.toLowerCase() === values.name.toLowerCase()
     );
+    console.log(data);
     if (sameName) {
       alert(` ${values.name} is already in contacts`);
     }
