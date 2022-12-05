@@ -1,12 +1,14 @@
-import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { addContactAction } from 'redux/slices/contactSlice';
+// import { addContactAction } from 'redux/slices/contactSlice';
+import { useGetContactsQuery, usePostContactsMutation } from 'api';
 
 import { Button, Form, Field, ErrorMessage } from './Form.styled';
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
+  const { data } = useGetContactsQuery();
+  const [submitForm, { isLoading }] = usePostContactsMutation();
+
   const initialValues = {
     name: '',
     number: '',
@@ -18,9 +20,16 @@ export const ContactForm = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    const { name, number } = values;
-    dispatch(addContactAction(name, number));
+    const sameName = data.some(
+      i => i.name.toLowerCase() === values.name.toLowerCase()
+    );
+    if (sameName) {
+      alert(` ${values.name} is already in contacts`);
+    }
     resetForm();
+    const { name, number } = values;
+
+    submitForm({ name, number });
   };
 
   return (
@@ -36,7 +45,7 @@ export const ContactForm = () => {
         <Field type="tel" name="number" />
         <ErrorMessage name="number" component="span" />
 
-        <Button type="submit">Add contact</Button>
+        <Button type="submit">{isLoading ? 'Add....' : 'Add contacts'}</Button>
       </Form>
     </Formik>
   );

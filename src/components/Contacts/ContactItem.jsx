@@ -1,20 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { deleteContactAction } from 'redux/slices/contactSlice';
+// import { deleteContactAction } from 'redux/slices/contactSlice';
+import { useDeleteContactsMutation } from 'api';
 
 import { Item, ButtonDelete } from '../Form/Form.styled';
 
 const ContactItem = ({ id, name, number }) => {
-  const dispatch = useDispatch();
+  const [deleteContacts, { isLoading }] = useDeleteContactsMutation();
+
   return (
     <>
       <Item>
         {`${name} : tel - ${number}`}
 
-        <ButtonDelete
-          onClick={() => dispatch(deleteContactAction(id))}
-          type="button"
-        >
-          Delete
+        <ButtonDelete onClick={() => deleteContacts(id)} type="button">
+          {isLoading ? 'Delete....' : 'Delete'}
         </ButtonDelete>
       </Item>
     </>
