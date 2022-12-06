@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-// import { addContactAction } from 'redux/slices/contactSlice';
+import toast, { Toaster } from 'react-hot-toast';
 import { useGetContactsQuery, usePostContactsMutation } from 'api';
 
 import { Button, Form, Field, ErrorMessage } from './Form.styled';
@@ -24,9 +24,8 @@ export const ContactForm = () => {
     const sameName = data.some(
       i => i.name.toLowerCase() === values.name.toLowerCase()
     );
-    console.log(data);
     if (sameName) {
-      alert(` ${values.name} is already in contacts`);
+      toast.error(` ${values.name} is already in contacts`);
     }
     resetForm();
     const { name, number } = values;
@@ -42,12 +41,12 @@ export const ContactForm = () => {
     >
       <Form>
         <Field type="text" name="name" />
-        <ErrorMessage name="name" component="span" />
 
+        <ErrorMessage name="name" component="span" />
         <Field type="tel" name="number" />
         <ErrorMessage name="number" component="span" />
-
         <Button type="submit">{isLoading ? 'Add....' : 'Add contacts'}</Button>
+        <Toaster position="top-right" reverseOrder={false} />
       </Form>
     </Formik>
   );

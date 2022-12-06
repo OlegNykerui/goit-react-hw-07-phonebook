@@ -9,6 +9,7 @@ export const App = () => {
         width: '500px',
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '50px',
         border: '1px dashed orange',
         backgroundColor: '#fffcf9',
       }}
