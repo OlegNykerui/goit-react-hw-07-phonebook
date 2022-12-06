@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import logger from 'redux-logger';
 import { filterReducer } from './reducers';
-import { contactsApi } from 'api';
+import { contactsApi } from 'redux/api';
 
 const middleware = getDefaultMiddleware =>
   getDefaultMiddleware({}).concat(contactsApi.middleware, logger);

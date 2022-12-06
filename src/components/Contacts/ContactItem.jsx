@@ -1,5 +1,4 @@
-// import { deleteContactAction } from 'redux/slices/contactSlice';
-import { useDeleteContactsMutation } from 'api';
+import { useDeleteContactsMutation } from 'redux/api';
 
 import { Item, ButtonDelete } from '../Form/Form.styled';
 

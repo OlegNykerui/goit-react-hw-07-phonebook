@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
-import { useGetContactsQuery, usePostContactsMutation } from 'api';
+import { useGetContactsQuery, usePostContactsMutation } from 'redux/api';
 
 import { Button, Form, Field, ErrorMessage } from './Form.styled';
 
