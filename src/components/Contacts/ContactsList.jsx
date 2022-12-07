@@ -24,13 +24,13 @@ export const ContactsList = () => {
         <h2>Loading......</h2>
       ) : data.length > 0 ? (
         <List>
-          {getContacts(data, filterState).map(({ id, name, phone }) => {
+          {getContacts(data, filterState).map(({ id, name, number }) => {
             return (
               <ContactItem
                 key={id}
                 id={id}
                 name={name}
-                number={phone}
+                number={number}
               ></ContactItem>
             );
           })}
