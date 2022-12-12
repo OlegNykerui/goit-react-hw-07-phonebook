@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-// import nextId from 'react-id-generator';
 import ContactItem from './ContactItem';
 import { useGetContactsQuery } from 'redux/api';
 
